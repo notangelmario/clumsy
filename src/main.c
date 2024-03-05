@@ -62,7 +62,7 @@ void loadConfig() {
     LOG("Executable path: %s", path);
     p = strrchr(path, '\\');
     if (p == NULL) p = strrchr(path, '/'); // holy shit
-    strcpy(p+1, CONFIG_FILE);
+    strncpy(p+1, CONFIG_FILE);
     LOG("Config path: %s", path);
     f = fopen(path, "r");
     if (f) {
@@ -251,7 +251,7 @@ void init(int argc, char* argv[]) {
     if(arg_value != NULL)
     {
         char valueBuf[16];
-        sprintf(valueBuf, "%s000", arg_value);  // convert from seconds to milliseconds
+        snprintf(valueBuf, "%s000", arg_value);  // convert from seconds to milliseconds
 
         timeout = IupTimer();
         IupStoreAttribute(timeout, "TIME", valueBuf);
